@@ -3320,3 +3320,348 @@ Processing by Devise::SessionsController#new as HTML
   Rendered devise/shared/_links.html.erb (0.3ms)
   Rendered devise/sessions/new.html.erb within layouts/application (375.1ms)
 Completed 200 OK in 420ms (Views: 418.9ms | ActiveRecord: 0.0ms)
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Migrating to AddAuthorToTickets (20160815050341)
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mALTER TABLE "tickets" ADD "author_id" integer[0m
+  [1m[35m (0.1ms)[0m  select sqlite_version(*)
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tickets_on_project_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tickets_on_project_id' AND type='index'
+[0m
+  [1m[35m (0.2ms)[0m  CREATE  INDEX "index_tickets_on_author_id" ON "tickets" ("author_id")
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "schema_migrations" ("version") VALUES (?)[0m  [["version", "20160815050341"]]
+  [1m[35m (76.4ms)[0m  commit transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.2ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tickets_on_author_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tickets_on_author_id' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_tickets_on_project_id' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_tickets_on_project_id' AND type='index'
+[0m
+  [1m[35m (0.1ms)[0m              SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_reset_password_token' AND type='index'
+
+  [1m[36m (0.1ms)[0m  [1m            SELECT sql
+            FROM sqlite_master
+            WHERE name='index_users_on_email' AND type='index'
+            UNION ALL
+            SELECT sql
+            FROM sqlite_temp_master
+            WHERE name='index_users_on_email' AND type='index'
+[0m
+
+
+Started GET "/" for ::1 at 2016-08-15 01:35:48 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.7ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.3ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (11.4ms)
+Completed 200 OK in 1160ms (Views: 1115.4ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2016-08-15 01:35:53 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (104.7ms)
+Completed 200 OK in 366ms (Views: 241.6ms | ActiveRecord: 10.1ms)
+
+
+Started GET "/users/sign_up" for ::1 at 2016-08-15 01:35:58 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (285.3ms)
+Completed 200 OK in 445ms (Views: 435.7ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/users/sign_in" for ::1 at 2016-08-15 01:36:00 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.4ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (391.1ms)
+Completed 200 OK in 539ms (Views: 537.8ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/" for ::1 at 2016-08-15 01:36:03 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (3.5ms)
+Completed 200 OK in 372ms (Views: 370.4ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/projects/1" for ::1 at 2016-08-15 01:36:05 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.3ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (228.5ms)
+Completed 200 OK in 447ms (Views: 372.3ms | ActiveRecord: 0.9ms)
+
+
+Started GET "/projects/1/tickets/1" for ::1 at 2016-08-15 01:36:07 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.2ms)[0m  [1mSELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (20.0ms)
+Completed 500 Internal Server Error in 91ms (ActiveRecord: 0.4ms)
+
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+    14:   <table id="attributes">
+    15:     <tr>
+    16:       <th>Author:</th>
+    17:       <td><%= @ticket.author.email %></td>
+    18:     </tr>
+    19:     <tr>
+    20:       <th>Created:</th>
+  app/views/tickets/show.html.erb:17:in `_app_views_tickets_show_html_erb___2530878944348884955_70180592080940'
+
+
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (5.2ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.2ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (22.2ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (0.6ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.9ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (10.1ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (146.8ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (4.4ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.5ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (253.0ms)
+
+
+Started GET "/" for ::1 at 2016-08-15 01:36:27 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 257ms (Views: 242.0ms | ActiveRecord: 0.2ms)
+
+
+Started GET "/assets/application.self-6b5e5c137724a1aa9c684eb3901f74f15e23197d694c5af4fa7a5d1c499e23ed.css?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/transition.self-6ad2488465135ab731a045a8ebbe3ea2fc501aed286042496eda1664fdd07ba9.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/button.self-126ac9bf0e7f2d8568f8da3a00fd5f0fac6eae0946331003370161fbf8d7975e.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/carousel.self-e47323f363ceb3dc0bdbce05e36e709ed428e339833a41140a85cb0af24b8127.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/collapse.self-2eb697f62b587bb786ff940d82dd4be88cdeeaf13ca128e3da3850c5fcaec301.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/alert.self-742145c5bb847aafdadc6e339be795628f8bc25f177e851f03a8c42278eb0312.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/affix.self-6d6f1a7fc5c8aabf3547fa1b794fab6268f54bc55ad815e55873c71f52513517.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/scrollspy.self-969f3c5f48cdf1e439c7fa1154c13b948715f5c689f87837c0b64521d3b46ef6.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/modal.self-3e78617ade5663314b7ee0ea10375a5b34d59ffbade44939e3f2a4e4ef2019b3.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/tab.self-5bf7078b682f8b131332eefa46b45fa5eff2eca745fc0d03e2991450888f7c28.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/tooltip.self-05afb177e08f98997ccfc84fa08a215e4b27d48d5fe4d049080675e9dffd8199.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/dropdown.self-561cca1cbaf67474e01e9536f106bad541594860a6df997004591c1c1957a147.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap/popover.self-0aa93860b59fe7393f1dd490f54b3cb994f9d6155adffce034d4e14ae361b041.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/tickets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-08-15 01:36:27 -0400
+
+
+Started GET "/users/sign_in" for ::1 at 2016-08-15 01:36:30 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.5ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (369.0ms)
+Completed 200 OK in 475ms (Views: 474.1ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2016-08-15 01:36:43 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"z2t4k4crDCUIlBzc3HPvJlBs7d/DAcWtCmZF9IUbkqc1T6JUJwq7HfDmCdQ9eK+llOLTeJiIh98qTPMTa/lLHQ==", "user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["email", "test@example.com"]]
+Completed 401 Unauthorized in 290ms (ActiveRecord: 0.2ms)
+Processing by Devise::SessionsController#new as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"z2t4k4crDCUIlBzc3HPvJlBs7d/DAcWtCmZF9IUbkqc1T6JUJwq7HfDmCdQ9eK+llOLTeJiIh98qTPMTa/lLHQ==", "user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  Rendered devise/shared/_links.html.erb (0.3ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (271.5ms)
+Completed 200 OK in 694ms (Views: 460.5ms | ActiveRecord: 0.0ms)
+
+
+Started POST "/users/sign_in" for ::1 at 2016-08-15 01:36:51 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "authenticity_token"=>"Xi1mGdQDcAf/o7RYPfyP5grtcxIqgYvLEYF4ENzm2OikCbzedCLHPwfRoVDc989lzmNNtXEIybkxq873MgQBUg==", "user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "test@example.com"]]
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35mSQL (0.5ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-15 04:23:12.009979"], ["current_sign_in_at", "2016-08-15 05:36:51.564760"], ["sign_in_count", 3], ["updated_at", "2016-08-15 05:36:51.566938"], ["id", 1]]
+  [1m[36m (70.3ms)[0m  [1mcommit transaction[0m
+Redirected to http://localhost:3000/
+Completed 302 Found in 474ms (ActiveRecord: 71.2ms)
+
+
+Started GET "/" for ::1 at 2016-08-15 01:36:51 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (3.7ms)
+  [1m[36mUser Load (3.6ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 169ms (Views: 164.2ms | ActiveRecord: 3.8ms)
+
+
+Started GET "/projects/1" for ::1 at 2016-08-15 01:36:56 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.2ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (21.6ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 290ms (Views: 287.2ms | ActiveRecord: 0.5ms)
+
+
+Started GET "/projects/1/tickets/1" for ::1 at 2016-08-15 01:36:58 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.1ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (15.2ms)
+Completed 500 Internal Server Error in 58ms (ActiveRecord: 0.2ms)
+
+ActionView::Template::Error (undefined method `email' for nil:NilClass):
+    14:   <table id="attributes">
+    15:     <tr>
+    16:       <th>Author:</th>
+    17:       <td><%= @ticket.author.email %></td>
+    18:     </tr>
+    19:     <tr>
+    20:       <th>Created:</th>
+  app/views/tickets/show.html.erb:17:in `_app_views_tickets_show_html_erb___2530878944348884955_70180592080940'
+
+
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_source.erb (4.8ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_trace.html.erb (2.4ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/_request_and_response.html.erb (0.8ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/actionpack-4.2.6/lib/action_dispatch/middleware/templates/rescues/template_error.html.erb within rescues/layout (18.3ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_markup.html.erb (1.0ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_inner_console_markup.html.erb within layouts/inlined_string (14.3ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/_prompt_box_markup.html.erb within layouts/inlined_string (0.3ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/style.css.erb within layouts/inlined_string (0.5ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/console.js.erb within layouts/javascript (103.9ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/main.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/error_page.js.erb within layouts/javascript (0.4ms)
+  Rendered /home/naman/.gem/ruby/2.3.1/gems/web-console-2.3.0/lib/web_console/templates/index.html.erb (219.0ms)
+
+
+Started GET "/projects/1" for ::1 at 2016-08-15 01:37:05 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.1ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (3.7ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 254ms (Views: 217.0ms | ActiveRecord: 0.3ms)
+
+
+Started GET "/assets/application.self-6b5e5c137724a1aa9c684eb3901f74f15e23197d694c5af4fa7a5d1c499e23ed.css?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/jquery.self-660adc51e0224b731d29f575a6f1ec167ba08ad06ed5deca4f1e8654c135bf4c.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/carousel.self-e47323f363ceb3dc0bdbce05e36e709ed428e339833a41140a85cb0af24b8127.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/turbolinks.self-c5acd7a204f5f25ce7a1d8a0e4d92e28d34c9e2df2c7371cd7af88e147e4ad82.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/transition.self-6ad2488465135ab731a045a8ebbe3ea2fc501aed286042496eda1664fdd07ba9.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/alert.self-742145c5bb847aafdadc6e339be795628f8bc25f177e851f03a8c42278eb0312.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/jquery_ujs.self-e87806d0cf4489aeb1bb7288016024e8de67fd18db693fe026fe3907581e53cd.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/button.self-126ac9bf0e7f2d8568f8da3a00fd5f0fac6eae0946331003370161fbf8d7975e.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/collapse.self-2eb697f62b587bb786ff940d82dd4be88cdeeaf13ca128e3da3850c5fcaec301.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/dropdown.self-561cca1cbaf67474e01e9536f106bad541594860a6df997004591c1c1957a147.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/modal.self-3e78617ade5663314b7ee0ea10375a5b34d59ffbade44939e3f2a4e4ef2019b3.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/tab.self-5bf7078b682f8b131332eefa46b45fa5eff2eca745fc0d03e2991450888f7c28.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/scrollspy.self-969f3c5f48cdf1e439c7fa1154c13b948715f5c689f87837c0b64521d3b46ef6.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/projects.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/tooltip.self-05afb177e08f98997ccfc84fa08a215e4b27d48d5fe4d049080675e9dffd8199.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/affix.self-6d6f1a7fc5c8aabf3547fa1b794fab6268f54bc55ad815e55873c71f52513517.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap/popover.self-0aa93860b59fe7393f1dd490f54b3cb994f9d6155adffce034d4e14ae361b041.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/bootstrap-sprockets.self-fbfa5ad7d9aa0afe439ec4ff3883acc4cb92b62cb67c40d674320c9aa1d4642d.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/tickets.self-877aef30ae1b040ab8a3aba4e3e309a11d7f2612f44dde450b5c157aa5f95c05.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
+
+
+Started GET "/assets/application.self-f8806224e027f3e3f0138ea9ce99319e298dfdb323304d1f1be6eae8e8c74724.js?body=1" for ::1 at 2016-08-15 01:37:06 -0400
