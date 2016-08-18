@@ -20026,3 +20026,1136 @@ Processing by TicketsController#show as HTML
   Rendered tickets/show.html.erb within layouts/application (1.9ms)
 Completed 200 OK in 5ms (Views: 3.9ms | ActiveRecord: 0.1ms)
   [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test1@example.com' LIMIT 1
+  [1m[36mSQL (0.3ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test1@example.com"], ["encrypted_password", "$2a$04$k3smf0LQgPzavpQEZnl/8OokrkgJl4DHVoZvXvcJe2sTfuubJZfee"], ["admin", "t"], ["created_at", "2016-08-18 19:32:59.200207"], ["updated_at", "2016-08-18 19:32:59.200207"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:32:59.210754"], ["current_sign_in_at", "2016-08-18 19:32:59.210754"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:32:59.211270"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 141ms (Views: 136.6ms | ActiveRecord: 0.2ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 9ms (Views: 4.4ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 8ms (Views: 6.2ms | ActiveRecord: 0.3ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/users/_form.html.erb (31.0ms)
+  Rendered admin/users/new.html.erb within layouts/application (33.2ms)
+Completed 200 OK in 36ms (Views: 34.9ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"newbie@example.com", "password"=>"[FILTERED]"}, "commit"=>"Create User"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newbie@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "newbie@example.com"], ["encrypted_password", "$2a$04$byqgL.U14XZ1BWb0Gf0nuOJdGqGYgBhfJ5./Ik.qbmOjc8oTmbqpu"], ["created_at", "2016-08-18 19:32:59.460670"], ["updated_at", "2016-08-18 19:32:59.460670"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test2@example.com"], ["encrypted_password", "$2a$04$60s3JGzsqRiyaTpyo9iSrunmBOtMFi8Ib.4ZoPeFpESvKqhOqd3uW"], ["admin", "t"], ["created_at", "2016-08-18 19:32:59.472855"], ["updated_at", "2016-08-18 19:32:59.472855"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:32:59.474454"], ["current_sign_in_at", "2016-08-18 19:32:59.474454"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:32:59.474843"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.1ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.1ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 28ms (Views: 26.5ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:32:59 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/users/_form.html.erb (5.4ms)
+  Rendered admin/users/new.html.erb within layouts/application (5.7ms)
+Completed 200 OK in 8ms (Views: 7.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test1@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test1@example.com"], ["encrypted_password", "$2a$04$8L0HyVtMoeLSkv/H3HKleOD2xeZ8PoiMy0dUZV.Pa4RAYXn/h5BGK"], ["admin", "t"], ["created_at", "2016-08-18 19:34:26.472373"], ["updated_at", "2016-08-18 19:34:26.472373"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:34:26.483280"], ["current_sign_in_at", "2016-08-18 19:34:26.483280"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:34:26.483852"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 142ms (Views: 139.2ms | ActiveRecord: 0.3ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 11ms (Views: 5.1ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 7ms (Views: 5.2ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/users/_form.html.erb (34.2ms)
+  Rendered admin/users/new.html.erb within layouts/application (36.3ms)
+Completed 200 OK in 39ms (Views: 38.1ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"newbie@example.com", "password"=>"[FILTERED]", "admin"=>"0"}, "commit"=>"Create User"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Unpermitted parameter: admin
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newbie@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "newbie@example.com"], ["encrypted_password", "$2a$04$hc6z59IQ2Sp6h3XYHs9W7uen9vSFlOBHks9s0ZlOiHvsY6FexwqoW"], ["created_at", "2016-08-18 19:34:26.728466"], ["updated_at", "2016-08-18 19:34:26.728466"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 7ms (ActiveRecord: 0.4ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 2.3ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test2@example.com"], ["encrypted_password", "$2a$04$8y5l9ESqAOKhdDoDDco1lOoIh8C4psPq43r1FSb.7VoSZwqxwoURm"], ["admin", "t"], ["created_at", "2016-08-18 19:34:26.740082"], ["updated_at", "2016-08-18 19:34:26.740082"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:34:26.741759"], ["current_sign_in_at", "2016-08-18 19:34:26.741759"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:34:26.742194"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.1ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/users/_form.html.erb (5.8ms)
+  Rendered admin/users/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 9ms (Views: 7.6ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "admin"=>"1"}, "commit"=>"Create User"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Unpermitted parameter: admin
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$04$2laOI9URQRowFXv.OoVVLO4i5BSqk0ED72EK0wwpeJkJDuzc/qGUu"], ["created_at", "2016-08-18 19:34:26.803043"], ["updated_at", "2016-08-18 19:34:26.803043"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:34:26 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test1@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test1@example.com"], ["encrypted_password", "$2a$04$HW3SrY4Q15A2j4k1e37DH.m7kzkb.2dPd2tcAq8n4qO48cwL22bEe"], ["admin", "t"], ["created_at", "2016-08-18 19:35:36.502467"], ["updated_at", "2016-08-18 19:35:36.502467"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:35:36.515681"], ["current_sign_in_at", "2016-08-18 19:35:36.515681"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:35:36.516279"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 152ms (Views: 148.4ms | ActiveRecord: 0.2ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 10ms (Views: 4.3ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 6ms (Views: 5.1ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/users/_form.html.erb (95.0ms)
+  Rendered admin/users/new.html.erb within layouts/application (151.5ms)
+Completed 200 OK in 156ms (Views: 154.5ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"newbie@example.com", "password"=>"[FILTERED]", "admin"=>"0"}, "commit"=>"Create User"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newbie@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "newbie@example.com"], ["encrypted_password", "$2a$04$p2VgsiG5NvOd4Er4nTmNc.GFB/olnNg79cnSOW/dzZY9O78yuH/l2"], ["created_at", "2016-08-18 19:35:36.891906"], ["updated_at", "2016-08-18 19:35:36.891906"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 12ms (ActiveRecord: 0.5ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.4ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 8ms (Views: 4.9ms | ActiveRecord: 0.5ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.2ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test2@example.com"], ["encrypted_password", "$2a$04$NKM5Uq2Avvs1rl5fbsd41OKS9keESUxLfCO6xshu6F3gNnOl9Hm.K"], ["admin", "t"], ["created_at", "2016-08-18 19:35:36.916413"], ["updated_at", "2016-08-18 19:35:36.916413"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:35:36.918934"], ["current_sign_in_at", "2016-08-18 19:35:36.918934"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:35:36.919486"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.1ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 3ms (Views: 1.5ms | ActiveRecord: 0.1ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/users/_form.html.erb (5.8ms)
+  Rendered admin/users/new.html.erb within layouts/application (6.0ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "admin"=>"1"}, "commit"=>"Create User"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$04$8skPUceM0TDe/HLfy0Z5NeZov1Xbdxx2Zdt8uth3m5hvMRKn4U.8C"], ["admin", "t"], ["created_at", "2016-08-18 19:35:36.981979"], ["updated_at", "2016-08-18 19:35:36.981979"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:35:36 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 2.0ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test1@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test1@example.com"], ["encrypted_password", "$2a$04$SRpRj4o.vsMCTSG1ryvgHu6mnwPSQDqWXSEv.cCZMCvULXfOB/SZu"], ["admin", "t"], ["created_at", "2016-08-18 19:42:32.291383"], ["updated_at", "2016-08-18 19:42:32.291383"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:32.302276"], ["current_sign_in_at", "2016-08-18 19:42:32.302276"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:32.302971"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (1.8ms)
+Completed 200 OK in 148ms (Views: 145.1ms | ActiveRecord: 0.2ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 11ms (Views: 4.9ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.3ms)
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/users/_form.html.erb (54.5ms)
+  Rendered admin/users/new.html.erb within layouts/application (56.9ms)
+Completed 200 OK in 62ms (Views: 60.4ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"newbie@example.com", "password"=>"[FILTERED]", "admin"=>"0"}, "commit"=>"Create User"}
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newbie@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "newbie@example.com"], ["encrypted_password", "$2a$04$1NdpLr3GjHKTzJJ11AvpPODlKJ1mXm3RcUkJLGfzlGtnJlzB.X0Li"], ["created_at", "2016-08-18 19:42:32.592304"], ["updated_at", "2016-08-18 19:42:32.592304"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 13ms (ActiveRecord: 0.8ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.7ms)
+Completed 200 OK in 6ms (Views: 3.8ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.3ms)[0m  rollback transaction
+  [1m[36m (0.2ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test2@example.com"], ["encrypted_password", "$2a$04$f7k7t0dRRNvm9n3cyzW9du9dzi4oTb8sn72lxi8wG29eoCjv60cGS"], ["admin", "t"], ["created_at", "2016-08-18 19:42:32.617488"], ["updated_at", "2016-08-18 19:42:32.617488"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+  [1m[35m (0.2ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:32.620680"], ["current_sign_in_at", "2016-08-18 19:42:32.620680"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:32.621537"], ["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.1ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 3ms (Views: 1.6ms | ActiveRecord: 0.1ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 2.3ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/users/_form.html.erb (5.7ms)
+  Rendered admin/users/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 9ms (Views: 7.5ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "admin"=>"1"}, "commit"=>"Create User"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$04$VWMXKim/Gje64E7ZzqNPBOYbN19S4eV1ZHxVXkrzC0dIas7agySzG"], ["admin", "t"], ["created_at", "2016-08-18 19:42:32.687722"], ["updated_at", "2016-08-18 19:42:32.687722"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 5ms (ActiveRecord: 0.3ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:32 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test1@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test1@example.com"], ["encrypted_password", "$2a$04$keyaBB0xNRrwG09Hb3fMf.MivVZ5xQk.3WMvhBs5pO.L9adS5.DQq"], ["created_at", "2016-08-18 19:42:45.614287"], ["updated_at", "2016-08-18 19:42:45.614287"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by Admin::ApplicationController#index as HTML
+Redirected to http://test.host/
+Filter chain halted as :authorize_admin! rendered or redirected
+Completed 302 Found in 0ms (ActiveRecord: 0.0ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"not-here"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 0]]
+Redirected to http://test.host/projects
+Filter chain halted as :set_project rendered or redirected
+Completed 302 Found in 6ms (ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test2@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test2@example.com"], ["encrypted_password", "$2a$04$fruCUfI2CL.gzayqCoxsYe7KeCuxBE7KOuvTZDjJjWFymdVren7w6"], ["admin", "t"], ["created_at", "2016-08-18 19:42:45.632284"], ["updated_at", "2016-08-18 19:42:45.632284"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:45.641112"], ["current_sign_in_at", "2016-08-18 19:42:45.641112"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:45.641639"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 142ms (Views: 141.4ms | ActiveRecord: 0.1ms)
+Started GET "/admin/projects/new" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::ProjectsController#new as HTML
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/projects/_form.html.erb (29.6ms)
+  Rendered admin/projects/new.html.erb within layouts/application (31.8ms)
+Completed 200 OK in 44ms (Views: 36.4ms | ActiveRecord: 0.2ms)
+Started POST "/admin/projects" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "project"=>{"name"=>"Sublime Text 3", "description"=>"A text editor for everyone"}, "commit"=>"Create Project"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "projects" ("name", "description", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["name", "Sublime Text 3"], ["description", "A text editor for everyone"], ["created_at", "2016-08-18 19:42:45.848773"], ["updated_at", "2016-08-18 19:42:45.848773"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/projects/1
+Completed 302 Found in 3ms (ActiveRecord: 0.4ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (34.5ms)
+Completed 200 OK in 37ms (Views: 36.1ms | ActiveRecord: 0.3ms)
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."name" = ? LIMIT 1  [["name", "Sublime Text 3"]]
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test3@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test3@example.com"], ["encrypted_password", "$2a$04$PBKdbifA.KaaWCbIrHrVNuFcV1SbFSvgMfL2P018cCRyu0oM/5kcu"], ["admin", "t"], ["created_at", "2016-08-18 19:42:45.896163"], ["updated_at", "2016-08-18 19:42:45.896163"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:45.898133"], ["current_sign_in_at", "2016-08-18 19:42:45.898133"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:45.898561"], ["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+Started GET "/admin/projects/new" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::ProjectsController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/projects/_form.html.erb (4.6ms)
+  Rendered admin/projects/new.html.erb within layouts/application (4.9ms)
+Completed 200 OK in 8ms (Views: 6.6ms | ActiveRecord: 0.1ms)
+Started POST "/admin/projects" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::ProjectsController#create as HTML
+  Parameters: {"utf8"=>"✓", "project"=>{"name"=>"", "description"=>""}, "commit"=>"Create Project"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered admin/projects/_form.html.erb (5.6ms)
+  Rendered admin/projects/new.html.erb within layouts/application (5.9ms)
+Completed 200 OK in 12ms (Views: 7.5ms | ActiveRecord: 0.3ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test4@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test4@example.com"], ["encrypted_password", "$2a$04$JZdl/M4W44tHtOgkYxTwSeOQDZEnsrze29WXZuMZRbCXIhBvqhPe."], ["admin", "t"], ["created_at", "2016-08-18 19:42:45.938122"], ["updated_at", "2016-08-18 19:42:45.938122"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:45.939851"], ["current_sign_in_at", "2016-08-18 19:42:45.939851"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:45.940240"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.2ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 2ms (Views: 1.6ms | ActiveRecord: 0.2ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 8ms (Views: 7.0ms | ActiveRecord: 0.0ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 8ms (Views: 6.8ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/users/_form.html.erb (11.3ms)
+  Rendered admin/users/new.html.erb within layouts/application (12.0ms)
+Completed 200 OK in 15ms (Views: 13.9ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:45 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"newbie@example.com", "password"=>"[FILTERED]", "admin"=>"0"}, "commit"=>"Create User"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'newbie@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "newbie@example.com"], ["encrypted_password", "$2a$04$Kepumt2oV4iLwQUyQksMe.SD4NG2CndnOcn.mbOuKlNjBiY/22zMa"], ["created_at", "2016-08-18 19:42:45.999295"], ["updated_at", "2016-08-18 19:42:45.999295"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 7ms (ActiveRecord: 0.4ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.2ms)[0m  [1mSELECT "users".* FROM "users"  ORDER BY "users"."email" ASC[0m
+  Rendered admin/users/index.html.erb within layouts/application (7.2ms)
+Completed 200 OK in 11ms (Views: 9.0ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test5@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.4ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)  [["email", "test5@example.com"], ["encrypted_password", "$2a$04$y57MDyeQgY3E.xIJkqqAxei4DdJhMqsNFOzM9HgJr0I.HtZTaGdLK"], ["admin", "t"], ["created_at", "2016-08-18 19:42:46.022931"], ["updated_at", "2016-08-18 19:42:46.022931"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:46.025000"], ["current_sign_in_at", "2016-08-18 19:42:46.025000"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.025426"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 3ms (Views: 2.6ms | ActiveRecord: 0.1ms)
+Started GET "/admin" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::ApplicationController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  Rendered admin/application/index.html.erb within layouts/application (0.1ms)
+Completed 200 OK in 3ms (Views: 1.9ms | ActiveRecord: 0.1ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 4ms (Views: 2.5ms | ActiveRecord: 0.2ms)
+Started GET "/admin/users/new" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::UsersController#new as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  Rendered admin/users/_form.html.erb (8.3ms)
+  Rendered admin/users/new.html.erb within layouts/application (8.5ms)
+Completed 200 OK in 12ms (Views: 10.1ms | ActiveRecord: 0.1ms)
+Started POST "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::UsersController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"admin@example.com", "password"=>"[FILTERED]", "admin"=>"1"}, "commit"=>"Create User"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'admin@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "admin@example.com"], ["encrypted_password", "$2a$04$tmJVuPbRgqUsRSUBXC5NGeGgnnVSG9irKVHsWnSPniYdn.1D2jRfu"], ["admin", "t"], ["created_at", "2016-08-18 19:42:46.074973"], ["updated_at", "2016-08-18 19:42:46.074973"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/admin/users
+Completed 302 Found in 6ms (ActiveRecord: 0.3ms)
+Started GET "/admin/users" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::UsersController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.6ms)[0m  SELECT "users".* FROM "users"  ORDER BY "users"."email" ASC
+  Rendered admin/users/index.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 5ms (Views: 3.1ms | ActiveRecord: 0.6ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test6@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test6@example.com"], ["encrypted_password", "$2a$04$n/iwT3GqWbe0IqsQ2mZbYuSqCEhyJ9WJuFcqS8RNy3.1yTf/jU97i"], ["admin", "t"], ["created_at", "2016-08-18 19:42:46.092345"], ["updated_at", "2016-08-18 19:42:46.092345"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Sublime Text 3"], ["created_at", "2016-08-18 19:42:46.095124"], ["updated_at", "2016-08-18 19:42:46.095124"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:46.097707"], ["current_sign_in_at", "2016-08-18 19:42:46.097707"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.098104"], ["id", 1]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.3ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 6ms (Views: 4.9ms | ActiveRecord: 0.4ms)
+Started DELETE "/admin/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Admin::ProjectsController#destroy as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  [1m[36mSQL (0.1ms)[0m  [1mDELETE FROM "projects" WHERE "projects"."id" = ?[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/projects
+Completed 302 Found in 4ms (ActiveRecord: 0.3ms)
+Started GET "/projects" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 4ms (Views: 3.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.4ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test7@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test7@example.com"], ["encrypted_password", "$2a$04$XqkaJnRcXXaUK8NVqUX4o.q1XEldcTu07TMbfhWXW30ez84heCEXq"], ["created_at", "2016-08-18 19:42:46.143248"], ["updated_at", "2016-08-18 19:42:46.143248"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.3ms)[0m  INSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Internet Explorer"], ["created_at", "2016-08-18 19:42:46.147021"], ["updated_at", "2016-08-18 19:42:46.147021"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:46.153246"], ["current_sign_in_at", "2016-08-18 19:42:46.153246"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.153904"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 4ms (Views: 3.2ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1/tickets/new" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#new as HTML
+  Parameters: {"project_id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered tickets/_form.html.erb (7.2ms)
+  Rendered tickets/new.html.erb within layouts/application (8.3ms)
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+Completed 200 OK in 27ms (Views: 14.9ms | ActiveRecord: 0.2ms)
+Started POST "/projects/1/tickets" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#create as HTML
+  Parameters: {"utf8"=>"✓", "ticket"=>{"name"=>"Non-valid compliance", "description"=>"My pages are ugly!"}, "commit"=>"Create Ticket", "project_id"=>"1"}
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("name", "description", "project_id", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Non-valid compliance"], ["description", "My pages are ugly!"], ["project_id", 1], ["author_id", 1], ["created_at", "2016-08-18 19:42:46.201199"], ["updated_at", "2016-08-18 19:42:46.201199"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/projects/1/tickets/1
+Completed 302 Found in 6ms (ActiveRecord: 0.5ms)
+Started GET "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", 1]]
+  [1m[35mUser Load (0.2ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (2.9ms)
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 7ms (Views: 5.3ms | ActiveRecord: 0.4ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test8@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "test8@example.com"], ["encrypted_password", "$2a$04$EBnfCewHDf2Y3e8smA.uVulF/1hpz2Mh8yjtv44Uv3unwFHDDnQi2"], ["created_at", "2016-08-18 19:42:46.219453"], ["updated_at", "2016-08-18 19:42:46.219453"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Internet Explorer"], ["created_at", "2016-08-18 19:42:46.221832"], ["updated_at", "2016-08-18 19:42:46.221832"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:46.224970"], ["current_sign_in_at", "2016-08-18 19:42:46.224970"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.226076"], ["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.1ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (1.5ms)
+Completed 200 OK in 4ms (Views: 3.5ms | ActiveRecord: 0.2ms)
+Started GET "/projects/1/tickets/new" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#new as HTML
+  Parameters: {"project_id"=>"1"}
+  [1m[35mProject Load (0.2ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered tickets/_form.html.erb (7.8ms)
+  Rendered tickets/new.html.erb within layouts/application (8.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 14ms (Views: 12.0ms | ActiveRecord: 0.3ms)
+Started POST "/projects/1/tickets" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#create as HTML
+  Parameters: {"utf8"=>"✓", "ticket"=>{"name"=>"", "description"=>""}, "commit"=>"Create Ticket", "project_id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered tickets/_form.html.erb (5.5ms)
+  Rendered tickets/new.html.erb within layouts/application (5.6ms)
+Completed 200 OK in 12ms (Views: 7.4ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test9@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.2ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "test9@example.com"], ["encrypted_password", "$2a$04$ywa2mdhIgvjBb3YUopUBmeK2TBR3h.FvagxWwB9F7nqaSQLmEkKwu"], ["created_at", "2016-08-18 19:42:46.277587"], ["updated_at", "2016-08-18 19:42:46.277587"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Internet Explorer"], ["created_at", "2016-08-18 19:42:46.280530"], ["updated_at", "2016-08-18 19:42:46.280530"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:46.282559"], ["current_sign_in_at", "2016-08-18 19:42:46.282559"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.284017"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.5ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1/tickets/new" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#new as HTML
+  Parameters: {"project_id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered tickets/_form.html.erb (5.0ms)
+  Rendered tickets/new.html.erb within layouts/application (5.2ms)
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+Completed 200 OK in 9ms (Views: 7.9ms | ActiveRecord: 0.1ms)
+Started POST "/projects/1/tickets" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#create as HTML
+  Parameters: {"utf8"=>"✓", "ticket"=>{"name"=>"Non-valid compliance", "description"=>"It sucks"}, "commit"=>"Create Ticket", "project_id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mROLLBACK TO SAVEPOINT active_record_1[0m
+  Rendered tickets/_form.html.erb (5.1ms)
+  Rendered tickets/new.html.erb within layouts/application (5.4ms)
+Completed 200 OK in 11ms (Views: 7.5ms | ActiveRecord: 0.2ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Example project"], ["created_at", "2016-08-18 19:42:46.321979"], ["updated_at", "2016-08-18 19:42:46.321979"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test10@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test10@example.com"], ["encrypted_password", "$2a$04$BAzW0CT/4oyTIspAX.xCh.rOo2.kd2/g9r8dFy1eGQVQMtCPmtfh."], ["created_at", "2016-08-18 19:42:46.325683"], ["updated_at", "2016-08-18 19:42:46.325683"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("name", "description", "project_id", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Example ticket"], ["description", "An example ticket, nothing more"], ["project_id", 1], ["author_id", 1], ["created_at", "2016-08-18 19:42:46.327788"], ["updated_at", "2016-08-18 19:42:46.327788"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", 1]]
+  [1m[35mUser Load (0.0ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (1.6ms)
+Completed 200 OK in 8ms (Views: 6.4ms | ActiveRecord: 0.1ms)
+Started DELETE "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#destroy as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  DELETE FROM "tickets" WHERE "tickets"."id" = ?  [["id", 1]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/projects/1
+Completed 302 Found in 12ms (ActiveRecord: 0.4ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Sublime Text 3"], ["created_at", "2016-08-18 19:42:46.360384"], ["updated_at", "2016-08-18 19:42:46.360384"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1/edit" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered projects/_form.html.erb (3.9ms)
+  Rendered projects/edit.html.erb within layouts/application (4.5ms)
+Completed 200 OK in 7ms (Views: 6.2ms | ActiveRecord: 0.0ms)
+Started PATCH "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "project"=>{"name"=>"Sublime Text 4 beta", "description"=>""}, "commit"=>"Update Project", "id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.2ms)[0m  [1mUPDATE "projects" SET "name" = ?, "description" = ?, "updated_at" = ? WHERE "projects"."id" = ?[0m  [["name", "Sublime Text 4 beta"], ["description", ""], ["updated_at", "2016-08-18 19:42:46.387678"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/projects/1
+Completed 302 Found in 5ms (ActiveRecord: 0.4ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Sublime Text 3"], ["created_at", "2016-08-18 19:42:46.398777"], ["updated_at", "2016-08-18 19:42:46.398777"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.6ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (1.1ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.2ms)
+Started GET "/projects/1/edit" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#edit as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered projects/_form.html.erb (5.6ms)
+  Rendered projects/edit.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 8ms (Views: 7.3ms | ActiveRecord: 0.1ms)
+Started PATCH "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#update as HTML
+  Parameters: {"utf8"=>"✓", "project"=>{"name"=>"", "description"=>""}, "commit"=>"Update Project", "id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered projects/_form.html.erb (3.7ms)
+  Rendered projects/edit.html.erb within layouts/application (3.9ms)
+Completed 200 OK in 8ms (Views: 5.1ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Example project"], ["created_at", "2016-08-18 19:42:46.436093"], ["updated_at", "2016-08-18 19:42:46.436093"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test11@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "test11@example.com"], ["encrypted_password", "$2a$04$2SsCPtvr9WUvBG1RC75aWunh/wJQjArCoXKVHr10e0zK1XElPVNg6"], ["created_at", "2016-08-18 19:42:46.439626"], ["updated_at", "2016-08-18 19:42:46.439626"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "tickets" ("name", "description", "project_id", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)[0m  [["name", "Example ticket"], ["description", "An example ticket, nothing more"], ["project_id", 1], ["author_id", 1], ["created_at", "2016-08-18 19:42:46.441170"], ["updated_at", "2016-08-18 19:42:46.441170"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.1ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  [1m[36mUser Load (0.1ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (2.8ms)
+Completed 200 OK in 7ms (Views: 4.8ms | ActiveRecord: 0.2ms)
+Started GET "/projects/1/tickets/1/edit" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#edit as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", 1]]
+  Rendered tickets/_form.html.erb (3.7ms)
+  Rendered tickets/edit.html.erb within layouts/application (4.1ms)
+Completed 200 OK in 7ms (Views: 5.8ms | ActiveRecord: 0.1ms)
+Started PATCH "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#update as HTML
+  Parameters: {"utf8"=>"✓", "ticket"=>{"name"=>"Make it really shiny!", "description"=>"An example ticket, nothing more"}, "commit"=>"Update Ticket", "project_id"=>"1", "id"=>"1"}
+  [1m[35mProject Load (0.1ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", 1]]
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "tickets" SET "name" = ?, "updated_at" = ? WHERE "tickets"."id" = ?[0m  [["name", "Make it really shiny!"], ["updated_at", "2016-08-18 19:42:46.467045"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/projects/1/tickets/1
+Completed 302 Found in 3ms (ActiveRecord: 0.3ms)
+Started GET "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 4ms (Views: 2.7ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.2ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Example project"], ["created_at", "2016-08-18 19:42:46.477604"], ["updated_at", "2016-08-18 19:42:46.477604"]]
+  [1m[35m (0.1ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test12@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test12@example.com"], ["encrypted_password", "$2a$04$jhRGYqimi8wZ5tv2NkLMwuNOzAp2Wto5JOo1R7v6sTDLTDZGUQRHu"], ["created_at", "2016-08-18 19:42:46.480921"], ["updated_at", "2016-08-18 19:42:46.480921"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("name", "description", "project_id", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Example ticket"], ["description", "An example ticket, nothing more"], ["project_id", 1], ["author_id", 1], ["created_at", "2016-08-18 19:42:46.482550"], ["updated_at", "2016-08-18 19:42:46.482550"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1[0m  [["project_id", 1], ["id", 1]]
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1  [["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (1.4ms)
+Completed 200 OK in 4ms (Views: 3.1ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1/tickets/1/edit" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#edit as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  Rendered tickets/_form.html.erb (3.6ms)
+  Rendered tickets/edit.html.erb within layouts/application (3.8ms)
+Completed 200 OK in 7ms (Views: 5.1ms | ActiveRecord: 0.1ms)
+Started PATCH "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#update as HTML
+  Parameters: {"utf8"=>"✓", "ticket"=>{"name"=>"", "description"=>"An example ticket, nothing more"}, "commit"=>"Update Ticket", "project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.1ms)[0m  ROLLBACK TO SAVEPOINT active_record_1
+  Rendered tickets/_form.html.erb (5.6ms)
+  Rendered tickets/edit.html.erb within layouts/application (5.8ms)
+Completed 200 OK in 11ms (Views: 7.3ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.2ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.3ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.3ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.1ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Example project"], ["created_at", "2016-08-18 19:42:46.520524"], ["updated_at", "2016-08-18 19:42:46.520524"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.1ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test13@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test13@example.com"], ["encrypted_password", "$2a$04$mnKCPzLVou/3gRQOw.zhnuMMb7rRJLC5jHpFfpUXXG5AYeQ6Gtvja"], ["created_at", "2016-08-18 19:42:46.529318"], ["updated_at", "2016-08-18 19:42:46.529318"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:46.530892"], ["current_sign_in_at", "2016-08-18 19:42:46.530892"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.531337"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 4ms (Views: 3.3ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.2ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test14@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test14@example.com"], ["encrypted_password", "$2a$04$0heNaySCY0Nz0HU.4K8EFucps7v6N0i93dOAHVtoX8ZocXQNs2QBi"], ["created_at", "2016-08-18 19:42:46.543070"], ["updated_at", "2016-08-18 19:42:46.543070"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Example project"], ["created_at", "2016-08-18 19:42:46.544366"], ["updated_at", "2016-08-18 19:42:46.544366"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.9ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:46.545877"], ["current_sign_in_at", "2016-08-18 19:42:46.545877"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.546240"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.2ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (1.9ms)
+Completed 200 OK in 4ms (Views: 2.9ms | ActiveRecord: 0.2ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test15@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test15@example.com"], ["encrypted_password", "$2a$04$Zim8PTCzik.p6nvJwBe19OWSptdxXzchLxqztIIb3x/dNLp/mN/3G"], ["admin", "t"], ["created_at", "2016-08-18 19:42:46.557347"], ["updated_at", "2016-08-18 19:42:46.557347"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:46.558890"], ["current_sign_in_at", "2016-08-18 19:42:46.558890"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.559298"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.4ms)
+Completed 200 OK in 2ms (Views: 1.5ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test16@example.com' LIMIT 1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "admin", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?)[0m  [["email", "test16@example.com"], ["encrypted_password", "$2a$04$Epgc2qGNtKIGkKGXc8pBKux/jYi.k.5Zk4z6wMokHO1cg0OwITZJi"], ["admin", "t"], ["created_at", "2016-08-18 19:42:46.568629"], ["updated_at", "2016-08-18 19:42:46.568629"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)  [["name", "Example project"], ["created_at", "2016-08-18 19:42:46.570521"], ["updated_at", "2016-08-18 19:42:46.570521"]]
+  [1m[36m (0.1ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:46.573578"], ["current_sign_in_at", "2016-08-18 19:42:46.573578"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.574121"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms)
+  [1m[36m (0.1ms)[0m  [1mrollback transaction[0m
+  [1m[35m (0.0ms)[0m  begin transaction
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test17@example.com' LIMIT 1
+  [1m[36mSQL (0.7ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test17@example.com"], ["encrypted_password", "$2a$04$trCbyfOTB/bVbgna7c4iPexfWl.3XjS.71Xo9iwWg2vyJjyZapYrS"], ["created_at", "2016-08-18 19:42:46.582627"], ["updated_at", "2016-08-18 19:42:46.582627"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+Started GET "/users/sign_in" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Devise::SessionsController#new as HTML
+  Rendered devise/shared/_links.html.erb (1.0ms)
+  Rendered devise/sessions/new.html.erb within layouts/application (9.5ms)
+Completed 200 OK in 18ms (Views: 16.5ms | ActiveRecord: 0.0ms)
+Started POST "/users/sign_in" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Devise::SessionsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"test17@example.com", "password"=>"[FILTERED]", "remember_me"=>"0"}, "commit"=>"Sign in"}
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."email" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["email", "test17@example.com"]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:46.621200"], ["current_sign_in_at", "2016-08-18 19:42:46.621200"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.621791"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 8ms (ActiveRecord: 0.3ms)
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test18@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "test18@example.com"], ["encrypted_password", "$2a$04$bskHBcA01Ps.rwVh1273HOJMoH/NrCk/TSOH.4OHeYv5eNZqgStWy"], ["created_at", "2016-08-18 19:42:46.636143"], ["updated_at", "2016-08-18 19:42:46.636143"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mUPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?[0m  [["last_sign_in_at", "2016-08-18 19:42:46.637754"], ["current_sign_in_at", "2016-08-18 19:42:46.637754"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.638128"], ["id", 1]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.3ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+Started DELETE "/users/sign_out" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Devise::SessionsController#destroy as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Redirected to http://www.example.com/
+Completed 302 Found in 3ms (ActiveRecord: 0.1ms)
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.5ms)
+Completed 200 OK in 2ms (Views: 1.7ms | ActiveRecord: 0.1ms)
+Started GET "/users/sign_up" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Devise::RegistrationsController#new as HTML
+  Rendered devise/shared/_links.html.erb (0.4ms)
+  Rendered devise/registrations/new.html.erb within layouts/application (6.2ms)
+Completed 200 OK in 12ms (Views: 11.0ms | ActiveRecord: 0.0ms)
+Started POST "/users" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by Devise::RegistrationsController#create as HTML
+  Parameters: {"utf8"=>"✓", "user"=>{"email"=>"test@example.com", "password"=>"[FILTERED]", "password_confirmation"=>"[FILTERED]"}, "commit"=>"Sign up"}
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mUser Exists (0.1ms)[0m  SELECT  1 AS one FROM "users" WHERE "users"."email" = 'test@example.com' LIMIT 1
+  [1m[36mSQL (0.2ms)[0m  [1mINSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)[0m  [["email", "test@example.com"], ["encrypted_password", "$2a$04$lJM6b9q4p6GGZIbnptMwcuNAv7uPSRzp0T9lPrb1u0mHWB0cUGRhW"], ["created_at", "2016-08-18 19:42:46.688594"], ["updated_at", "2016-08-18 19:42:46.688594"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  UPDATE "users" SET "last_sign_in_at" = ?, "current_sign_in_at" = ?, "last_sign_in_ip" = ?, "current_sign_in_ip" = ?, "sign_in_count" = ?, "updated_at" = ? WHERE "users"."id" = ?  [["last_sign_in_at", "2016-08-18 19:42:46.689889"], ["current_sign_in_at", "2016-08-18 19:42:46.689889"], ["last_sign_in_ip", "127.0.0.1"], ["current_sign_in_ip", "127.0.0.1"], ["sign_in_count", 1], ["updated_at", "2016-08-18 19:42:46.690633"], ["id", 1]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Redirected to http://www.example.com/
+Completed 302 Found in 7ms (ActiveRecord: 0.5ms)
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mUser Load (0.1ms)[0m  SELECT  "users".* FROM "users" WHERE "users"."id" = ?  ORDER BY "users"."id" ASC LIMIT 1  [["id", 1]]
+  [1m[36mProject Load (0.1ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (1.0ms)
+Completed 200 OK in 3ms (Views: 2.1ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Sublime Text 3"], ["created_at", "2016-08-18 19:42:46.700257"], ["updated_at", "2016-08-18 19:42:46.700257"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[36mProject Load (0.2ms)[0m  [1mSELECT "projects".* FROM "projects"[0m
+  Rendered projects/index.html.erb within layouts/application (0.7ms)
+Completed 200 OK in 2ms (Views: 1.8ms | ActiveRecord: 0.2ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[35mProject Load (0.0ms)[0m  SELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1  [["id", 1]]
+  [1m[36mTicket Load (0.0ms)[0m  [1mSELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?[0m  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (0.9ms)
+Completed 200 OK in 3ms (Views: 2.4ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
+  [1m[36m (0.0ms)[0m  [1mbegin transaction[0m
+  [1m[35m (0.1ms)[0m  SAVEPOINT active_record_1
+  [1m[36mUser Exists (0.1ms)[0m  [1mSELECT  1 AS one FROM "users" WHERE "users"."email" = 'test19@example.com' LIMIT 1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "users" ("email", "encrypted_password", "created_at", "updated_at") VALUES (?, ?, ?, ?)  [["email", "test19@example.com"], ["encrypted_password", "$2a$04$n3sCRGpjpAvQdj91WzH30ud5.CdssEgHsw2oLmUcoqAAGw3S3EasO"], ["created_at", "2016-08-18 19:42:46.713436"], ["updated_at", "2016-08-18 19:42:46.713436"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.1ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Sublime Text 3"], ["created_at", "2016-08-18 19:42:46.714976"], ["updated_at", "2016-08-18 19:42:46.714976"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.0ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("name", "description", "project_id", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Make it shiny!"], ["description", "Gradients! Starbursts! Oh my!"], ["project_id", 1], ["author_id", 1], ["created_at", "2016-08-18 19:42:46.716545"], ["updated_at", "2016-08-18 19:42:46.716545"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+  [1m[35m (0.0ms)[0m  SAVEPOINT active_record_1
+  [1m[36mSQL (0.0ms)[0m  [1mINSERT INTO "projects" ("name", "created_at", "updated_at") VALUES (?, ?, ?)[0m  [["name", "Internet Explorer"], ["created_at", "2016-08-18 19:42:46.717975"], ["updated_at", "2016-08-18 19:42:46.717975"]]
+  [1m[35m (0.0ms)[0m  RELEASE SAVEPOINT active_record_1
+  [1m[36m (0.1ms)[0m  [1mSAVEPOINT active_record_1[0m
+  [1m[35mSQL (0.1ms)[0m  INSERT INTO "tickets" ("name", "description", "project_id", "author_id", "created_at", "updated_at") VALUES (?, ?, ?, ?, ?, ?)  [["name", "Standards compliance"], ["description", "Isn't a joke."], ["project_id", 2], ["author_id", 1], ["created_at", "2016-08-18 19:42:46.719395"], ["updated_at", "2016-08-18 19:42:46.719395"]]
+  [1m[36m (0.0ms)[0m  [1mRELEASE SAVEPOINT active_record_1[0m
+Started GET "/" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#index as HTML
+  [1m[35mProject Load (0.1ms)[0m  SELECT "projects".* FROM "projects"
+  Rendered projects/index.html.erb within layouts/application (0.8ms)
+Completed 200 OK in 2ms (Views: 1.9ms | ActiveRecord: 0.1ms)
+Started GET "/projects/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by ProjectsController#show as HTML
+  Parameters: {"id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.1ms)[0m  SELECT "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ?  [["project_id", 1]]
+  Rendered projects/show.html.erb within layouts/application (2.2ms)
+Completed 200 OK in 7ms (Views: 4.9ms | ActiveRecord: 0.2ms)
+Started GET "/projects/1/tickets/1" for 127.0.0.1 at 2016-08-18 15:42:46 -0400
+Processing by TicketsController#show as HTML
+  Parameters: {"project_id"=>"1", "id"=>"1"}
+  [1m[36mProject Load (0.0ms)[0m  [1mSELECT  "projects".* FROM "projects" WHERE "projects"."id" = ? LIMIT 1[0m  [["id", 1]]
+  [1m[35mTicket Load (0.0ms)[0m  SELECT  "tickets".* FROM "tickets" WHERE "tickets"."project_id" = ? AND "tickets"."id" = ? LIMIT 1  [["project_id", 1], ["id", 1]]
+  [1m[36mUser Load (0.0ms)[0m  [1mSELECT  "users".* FROM "users" WHERE "users"."id" = ? LIMIT 1[0m  [["id", 1]]
+  Rendered tickets/show.html.erb within layouts/application (1.2ms)
+Completed 200 OK in 5ms (Views: 3.2ms | ActiveRecord: 0.1ms)
+  [1m[35m (0.1ms)[0m  rollback transaction
