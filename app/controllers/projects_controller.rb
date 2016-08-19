@@ -6,9 +6,11 @@ class ProjectsController < ApplicationController
   end
 
   def edit
+    authorize @project, :update?
   end
 
   def update
+    authorize @project, :update?
     @project.update(project_params)
 
     if @project.update(project_params)

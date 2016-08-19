@@ -5604,3 +5604,10 @@ Migrating to CreateRoles (20160818220038)
             FROM sqlite_temp_master
             WHERE name='index_users_on_email' AND type='index'
 
+
+
+Started GET "/" for ::1 at 2016-08-19 13:06:51 -0400
+  [1m[36mActiveRecord::SchemaMigration Load (0.1ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by ProjectsController#index as HTML
+  Rendered projects/index.html.erb within layouts/application (2.0ms)
+Completed 200 OK in 666ms (Views: 600.4ms | ActiveRecord: 0.0ms)
